@@ -1,39 +1,33 @@
-import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import { AudioVisualizer } from "@/components/AudioVisualizer";
+import { Header } from "@/components/Header";
+import { PracticeLog } from "@/components/PracticeLog";
+import { ScaleFingering } from "@/components/ScaleFingering";
+import { Timer } from "@/components/Timer";
+import { GPPage } from "@/components/ui/Page";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
-})
+});
 
 function App() {
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
+    <div>
+      <Header />
+
+      <GPPage className="flex flex-col">
+        <Timer className="mb-5" />
+
+        <div className="mb-4">Practicing: Myxolydian in G Major</div>
+
+        <AudioVisualizer className="mb-16" />
+
+        <div className="self-center mb-12">
+          <ScaleFingering />
+        </div>
+
+        <PracticeLog />
+      </GPPage>
     </div>
-  )
+  );
 }

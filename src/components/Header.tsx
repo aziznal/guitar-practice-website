@@ -1,25 +1,18 @@
-import { Link } from '@tanstack/react-router'
+import { cn } from "@/lib/utils";
+import { Nav } from "./Nav";
+import { Logo } from "./Logo";
+import { Metronome } from "./Metronome";
 
-export default function Header() {
+export const Header: React.FC<{ className?: string }> = (props) => {
   return (
-    <header className="p-2 flex gap-2 bg-white text-black justify-between">
-      <nav className="flex flex-row">
-        <div className="px-2 font-bold">
-          <Link to="/">Home</Link>
-        </div>
+    <div
+      className={cn("p-8 flex items-center justify-between", props.className)}
+    >
+      <Logo />
 
-        <div className="px-2 font-bold">
-          <Link to="/demo/start/server-funcs">Start - Server Functions</Link>
-        </div>
+      <Nav />
 
-        <div className="px-2 font-bold">
-          <Link to="/demo/start/api-request">Start - API Request</Link>
-        </div>
-
-        <div className="px-2 font-bold">
-          <Link to="/demo/tanstack-query">TanStack Query</Link>
-        </div>
-      </nav>
-    </header>
-  )
-}
+      <Metronome />
+    </div>
+  );
+};
