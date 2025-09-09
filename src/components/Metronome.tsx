@@ -43,17 +43,21 @@ export const Metronome: React.FC<{ className?: string }> = (props) => {
         {isMetronomePlaying ? <LucidePause /> : <LucidePlay />}
       </Button>
 
-      <div>
-        <p className="text-muted-foreground mb-1 font-mono">{metronomeIntervalMs}</p>
+      {isMetronomePlaying && (
+        <div>
+          <p className="text-muted-foreground mb-1 font-mono">
+            {metronomeIntervalMs}
+          </p>
 
-        <GPSlider
-          value={[metronomeIntervalMs]}
-          onValueChange={([value]) => setMetronomeIntervalMs(value)}
-					step={50}
-          max={2000}
-          min={50}
-        />
-      </div>
+          <GPSlider
+            value={[metronomeIntervalMs]}
+            onValueChange={([value]) => setMetronomeIntervalMs(value)}
+            step={50}
+            max={2000}
+            min={50}
+          />
+        </div>
+      )}
     </div>
   );
 };
