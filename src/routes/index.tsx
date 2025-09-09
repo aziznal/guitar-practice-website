@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { PracticeLog } from "@/components/PracticeLog";
 import { ScaleFingering } from "@/components/ScaleFingering";
 import { Timer } from "@/components/Timer";
-import { GPPage } from "@/components/ui/Page";
+import { GPPage } from "@/components/ui/page";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({

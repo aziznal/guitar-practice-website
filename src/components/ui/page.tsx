@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Metronome } from "../Metronome";
 
 export const GPPage: React.FC<{
   className?: string;
@@ -8,10 +9,10 @@ export const GPPage: React.FC<{
     <div
       className={cn(
         props.className,
-        "mt-8 mx-8 sm:mx-auto min-h-dvh max-w-[768px] w-full",
+        "mt-8 mx-8 sm:mx-auto sm:px-6 min-h-dvh max-w-[768px] w-full",
       )}
     >
-      {props.children}
+      <Metronome />
     </div>
   );
 };
