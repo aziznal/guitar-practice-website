@@ -1,3 +1,4 @@
+import { Metronome } from "@/components/Metronome";
 import { GPPage } from "@/components/ui/page";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -6,5 +7,9 @@ export const Route = createFileRoute("/components")({
 });
 
 function RouteComponent() {
-  return <GPPage>Hello "/components"!</GPPage>;
+  return (
+    <GPPage>
+      <Metronome />
+    </GPPage>
+  );
 }
