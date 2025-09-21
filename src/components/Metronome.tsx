@@ -1,12 +1,15 @@
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import { GPButton } from "./ui/button";
 import { useEffect, useState } from "react";
 import { LucidePlay, LucidePause } from "lucide-react";
 import { GPSlider } from "./ui/slider";
 
 // TODO: use bpms for slider
+// TODO: add (toggleable) visualization
+// TODO: convert to pinnable popover
 
 const audio = new Audio("/audio/metronome/click.wav");
+audio.preload = "auto";
 
 export const Metronome: React.FC<{ className?: string }> = (props) => {
   const [isMetronomePlaying, setIsMetronomePlaying] = useState(false);
@@ -34,14 +37,14 @@ export const Metronome: React.FC<{ className?: string }> = (props) => {
 
   return (
     <div className={cn(props.className)}>
-      <Button
+      <GPButton
         className="mb-4"
         onClick={isMetronomePlaying ? stopMetronome : startMetronome}
         variant={isMetronomePlaying ? "secondary" : "default"}
       >
         {isMetronomePlaying ? "Stop" : "Start"} metronome{" "}
         {isMetronomePlaying ? <LucidePause /> : <LucidePlay />}
-      </Button>
+      </GPButton>
 
       {isMetronomePlaying && (
         <div>
@@ -58,6 +61,15 @@ export const Metronome: React.FC<{ className?: string }> = (props) => {
           />
         </div>
       )}
+
+      <GPButton
+        onClick={() => {
+          audio.currentTime = 0;
+          audio.play();
+        }}
+      >
+        Click
+      </GPButton>
     </div>
   );
 };

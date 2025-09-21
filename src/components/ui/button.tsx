@@ -56,4 +56,4 @@ function GPButton({
   );
 }
 
-export { GPButton as Button };
+export { GPButton };
