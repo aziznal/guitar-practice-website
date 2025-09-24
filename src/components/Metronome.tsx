@@ -61,15 +61,6 @@ export const Metronome: React.FC<{ className?: string }> = (props) => {
           />
         </div>
       )}
-
-      <GPButton
-        onClick={() => {
-          audio.currentTime = 0;
-          audio.play();
-        }}
-      >
-        Click
-      </GPButton>
     </div>
   );
 };
