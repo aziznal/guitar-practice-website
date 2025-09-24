@@ -1,11 +1,8 @@
 import { cn } from "@/lib/utils";
-import { GPButton } from "./ui/button";
 import { useEffect, useState } from "react";
 import { LucidePlay, LucidePause } from "lucide-react";
 import { GPSlider } from "./ui/slider";
 
-// TODO: use bpms for slider
-// TODO: add (toggleable) visualization
 // TODO: convert to pinnable popover
 
 const audio = new Audio("/audio/metronome/click.wav");
@@ -13,7 +10,10 @@ audio.preload = "auto";
 
 export const Metronome: React.FC<{ className?: string }> = (props) => {
   const [isMetronomePlaying, setIsMetronomePlaying] = useState(false);
-  const [metronomeIntervalMs, setMetronomeIntervalMs] = useState(1000);
+
+  const [bpm, setBpm] = useState(60);
+  const metronomeIntervalMs = 60000 / bpm;
+
   const [angle, setAngle] = useState(15);
 
   const startMetronome = () => {
@@ -148,18 +148,25 @@ export const Metronome: React.FC<{ className?: string }> = (props) => {
       </div>
 
       {isMetronomePlaying && (
-        <div className="animate-in">
-          <p className="text-muted-foreground mb-1 font-mono">
-            {metronomeIntervalMs}
-          </p>
-
+        <div className="max-w-[120px] w-full flex flex-col gap-2 items-center">
           <GPSlider
-            value={[metronomeIntervalMs]}
-            onValueChange={([value]) => setMetronomeIntervalMs(value)}
-            step={50}
-            max={2000}
-            min={50}
+            value={[bpm]}
+            onValueChange={([value]) => setBpm(value)}
+            step={1}
+            min={20}
+            max={240}
           />
+
+          <div className="text-muted-foreground flex items-center gap-1">
+            <input
+              className="border p-1 rounded px-2 w-[40px] mb-1 font-mono text-sm"
+              value={bpm}
+              onChange={(e) =>
+                Number.isNaN(+e.target.value) ? null : setBpm(+e.target.value)
+              }
+            />
+            bpm
+          </div>
         </div>
       )}
     </div>
