@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/components")({
   component: RouteComponent,
+  ssr: false
 });
 
 function RouteComponent() {
